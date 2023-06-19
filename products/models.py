@@ -38,6 +38,8 @@ class Product(BaseModel):
     category = models.ForeignKey(Category,on_delete=models.CASCADE, related_name = "products")
     price = models.IntegerField()
     product_description = models.TextField()
+    color_variant = models.ManyToManyField(ColorVariant, blank=True)
+    size_variant = models.ManyToManyField(SizeVariant, blank=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.product_name)
